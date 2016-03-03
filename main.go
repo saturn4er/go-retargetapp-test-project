@@ -8,9 +8,6 @@ import (
 	"encoding/json"
 	"log"
 	"strconv"
-	"net"
-	"bufio"
-	"io"
 )
 
 const HTTP_PORT = "8000"

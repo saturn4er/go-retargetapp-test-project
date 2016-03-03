@@ -3,7 +3,6 @@ package topWords
 import (
 	"sync"
 	"sort"
-	"fmt"
 )
 
 type Pair struct {
@@ -81,7 +80,9 @@ func (this *topWordsProvider) GetTopWords(count int) []string {
 	if count > this.topCount {
 		count = this.topCount
 	}
-	return this.top[:count]
+	result := make([]string, count)
+	copy(result, this.top[:count])
+	return result
 }
 
 func GetTopWordsProvider() *topWordsProvider {
