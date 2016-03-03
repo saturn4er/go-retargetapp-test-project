@@ -3,6 +3,7 @@ package topWords
 import (
 	"sync"
 	"sort"
+	"fmt"
 )
 
 type Pair struct {
@@ -20,7 +21,7 @@ func (p PairList) Less(i, j int) bool {
 func (p PairList) Swap(i, j int) {
 	p[i], p[j] = p[j], p[i]
 }
-
+type TopWordsProviderPointer *topWordsProvider
 type topWordsProvider struct {
 	top              []string
 	topMutex         sync.Mutex
