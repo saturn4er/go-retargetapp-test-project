@@ -29,12 +29,14 @@ type topWordsProvider struct {
 	wordsCountsMutex sync.Mutex
 }
 
-func (this *topWordsProvider) addWordsString(wordsString string) {
+// Add string to top
+func (this *topWordsProvider) AddWordsString(wordsString string) {
 	this.wordsCountsMutex.Lock()
 	defer this.wordsCountsMutex.Unlock()
 
 	var prevIndex int
 	var prevWasSpace bool
+	// Search words divided by space ( It faster than regexp )
 	for i, c := range wordsString {
 		if c == ' ' {
 			if prevIndex != -1 {
@@ -84,6 +86,5 @@ func (this *topWordsProvider) GetTopWords(count int) []string {
 func GetTopWordsProvider() *topWordsProvider {
 	result := new(topWordsProvider)
 	result.wordsCounts = map[string]int{}
-	result.addWordsString("go bla bla-bla bla foo foo foo bar boo")
 	return result
 }
